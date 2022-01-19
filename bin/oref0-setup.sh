@@ -746,7 +746,7 @@ if prompt_yn "" N; then
     echo Checking oref0 installation
     cd $HOME/src/oref0
     if git branch | grep "* master"; then
-        npm list -g --depth=0 | egrep oref0@0.6.[0] || (echo Installing latest oref0 package && sudo npm install -g oref0)
+        npm list -g --depth=0 | egrep oref0@0.6.[0] || (echo Installing latest oref0 package && npm install -g oref0)
     elif [[ ${npm_option,,} == "force" ]]; then
         echo Forcing install of latest oref0 from $HOME/src/oref0/ && cd $HOME/src/oref0/ && npm run global-install
     else
@@ -991,7 +991,7 @@ if prompt_yn "" N; then
         git clone https://github.com/xdrip-js/Logger.git $HOME/src/Logger
         cd $HOME/src/Logger            
         sudo apt-get install -y bluez-tools
-        sudo npm run global-install
+        npm run global-install
         touch /tmp/reboot-required
     fi
 
@@ -1116,7 +1116,7 @@ if prompt_yn "" N; then
         systemctl enable pi-buttons && systemctl restart pi-buttons
         echo "Installing openaps-menu..."
         cd $HOME/src && git clone git://github.com/openaps/openaps-menu.git || (cd openaps-menu && git checkout master && git pull)
-        cd $HOME/src/openaps-menu && sudo npm install
+        cd $HOME/src/openaps-menu && npm install
         cp $HOME/src/openaps-menu/openaps-menu.service /etc/systemd/system/ && systemctl enable openaps-menu
     fi
 
